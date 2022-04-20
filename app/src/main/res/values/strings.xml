@@ -25,4 +25,5 @@
     <string name="password_not_valid">Password should contain: \n• at least 1 digit \n• at least 1 lower case letter \n• at least 1 upper case latter \n• at least 1 special character [@#$%^+=]
         \n• at least 8 characters</string>
     <string name="log_out">Log out</string>
+    <string name="type_a_message">Type a message</string>
 </resources>
