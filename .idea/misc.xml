@@ -3,14 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/drawable-v24/ic_power.xml" value="0.131" />
         <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/drawable-v24/show_password_selector.xml" value="0.1095" />
         <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.211" />
         <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/drawable/ic_person.xml" value="0.2245" />
         <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/layout/activity_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/layout/one_view.xml" value="0.2759259259259259" />
         <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/layout/user_b_view.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/layout/user_layout.xml" value="0.20885416666666667" />
+        <entry key="..\:/Users/yash.patel/AndroidStudioProjects/ChatAppDemo/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
