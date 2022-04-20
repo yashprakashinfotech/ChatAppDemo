@@ -11,4 +11,11 @@
     <color name="txtGray">#C0C0C0</color>
     <color name="message_card">#774df2</color>
     <color name="message_card_2">#eef1f6</color>
+
+    <color name="ButtonColor">#F49301</color>
+    <color name="orange">#FFA500</color>
+    <color name="dark_orange">#FF8C00</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="textHintColor">#9C9A9A</color>
 </resources>
