@@ -6,7 +6,7 @@
     tools:context=".activity.ChatActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chatRecyclerView"
+        android:id="@+id/messageRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout" />
@@ -35,7 +35,7 @@
             android:inputType="text" />
 
         <ImageButton
-            android:id="@+id/btnMessage"
+            android:id="@+id/sentButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="13"
