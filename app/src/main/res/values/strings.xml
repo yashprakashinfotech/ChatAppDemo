@@ -26,4 +26,5 @@
         \n• at least 8 characters</string>
     <string name="log_out">Log out</string>
     <string name="type_a_message">Type a message</string>
+    <string name="this_is_sent_message">This is Sent message</string>
 </resources>
