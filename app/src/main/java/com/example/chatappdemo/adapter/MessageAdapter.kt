@@ -2,7 +2,6 @@ package com.example.chatappdemo.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -11,7 +10,7 @@ import com.example.chatappdemo.R
 import com.example.chatappdemo.model.Message
 import com.google.firebase.auth.FirebaseAuth
 
-class MessageAdapter(val context: Context, val messageList : ArrayList<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class MessageAdapter(val context: Context, private val messageList : ArrayList<Message>) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     private val itemReceive = 1
     private val itemSent = 2
@@ -39,13 +38,13 @@ class MessageAdapter(val context: Context, val messageList : ArrayList<Message>)
 
             // Do stuff for sent ViewHolder
             val currentMessage = messageList[position]
-            val viewHolder = holder as SentViewHolder
+            holder as SentViewHolder
             holder.sentMessage.text = currentMessage.message
         }
         else{
             // Do stuff for receive ViewHolder
             val currentMessage = messageList[position]
-            val viewHolder = holder as ReceiveViewHolder
+            holder as ReceiveViewHolder
             holder.receiveMessage.text = currentMessage.message
         }
 
@@ -54,10 +53,10 @@ class MessageAdapter(val context: Context, val messageList : ArrayList<Message>)
     override fun getItemViewType(position: Int): Int {
         val currentMessage = messageList[position]
 
-        if (FirebaseAuth.getInstance().currentUser!!.uid == currentMessage.senderId){
-            return itemSent
+        return if (FirebaseAuth.getInstance().currentUser!!.uid == currentMessage.senderId){
+            itemSent
         }else{
-            return itemReceive
+            itemReceive
         }
     }
 

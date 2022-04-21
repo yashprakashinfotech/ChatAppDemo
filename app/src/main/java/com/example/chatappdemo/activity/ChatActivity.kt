@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.chatappdemo.R
 import com.example.chatappdemo.adapter.MessageAdapter
 import com.example.chatappdemo.helper.KeyClass
+import com.example.chatappdemo.helper.Validation
 import com.example.chatappdemo.model.Message
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -56,7 +57,7 @@ class ChatActivity : AppCompatActivity() {
         // adding the message to database
         sentButton.setOnClickListener {
 
-            if (!TextUtils.isEmpty(messageBox.text.toString())){
+            if (!TextUtils.isEmpty(messageBox.text.toString()) && !Validation.isValidSpaceFormat(messageBox.text.toString())){
                 val message = messageBox.text.toString()
                 val messageObject = Message(message,senderUid)
                 mDbRef.child(KeyClass.KEY_CHATS).child(senderRoom!!).child(KeyClass.KEY_MESSAGES).push()

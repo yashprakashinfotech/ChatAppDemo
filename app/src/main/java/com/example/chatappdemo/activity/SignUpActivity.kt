@@ -8,7 +8,6 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.UserHandle
 import android.text.TextUtils
 import android.view.MotionEvent
 import android.view.View

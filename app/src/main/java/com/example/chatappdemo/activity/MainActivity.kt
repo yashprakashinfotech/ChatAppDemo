@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private lateinit var sessionManager: SessionManager
-//    private lateinit var toolbar: androidx.appcompat.widget.Toolbar
     private lateinit var sharedPrefs : SharedPreferences
 
     // Database

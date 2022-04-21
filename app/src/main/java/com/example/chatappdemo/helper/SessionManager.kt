@@ -6,7 +6,7 @@ import android.content.Context
 class SessionManager(context: Context) {
 
     var privateMode = 0
-    val prefFile = "PrakashJobApp"
+    val prefFile = "ChatApp"
 
     private var pref = context.getSharedPreferences(prefFile, privateMode)
     private var prefEditor = pref.edit()
@@ -16,9 +16,9 @@ class SessionManager(context: Context) {
         prefEditor.apply()
     }
 
-    fun getString(Key_name: String): String? {
-        return pref.getString(Key_name, "defaultString")
-    }
+//    fun getString(Key_name: String): String? {
+//        return pref.getString(Key_name, "defaultString")
+//    }
 
     fun putBoolean(key_name: String, isLoggedIn: Boolean) {
         prefEditor.putBoolean(key_name, isLoggedIn)

@@ -11,9 +11,8 @@ import com.example.chatappdemo.R
 import com.example.chatappdemo.activity.ChatActivity
 import com.example.chatappdemo.helper.KeyClass
 import com.example.chatappdemo.model.User
-import com.google.firebase.auth.FirebaseAuth
 
-class UserAdapter(val context: Context, val userList: ArrayList<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
+class UserAdapter(val context: Context, private val userList: ArrayList<User>) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
