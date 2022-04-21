@@ -1,19 +1,20 @@
 package com.example.chatappdemo.activity
 
-import android.content.Intent
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatappdemo.R
 import com.example.chatappdemo.adapter.MessageAdapter
 import com.example.chatappdemo.helper.KeyClass
 import com.example.chatappdemo.model.Message
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class ChatActivity : AppCompatActivity() {
 
@@ -47,18 +48,26 @@ class ChatActivity : AppCompatActivity() {
         senderRoom = receiverUid + senderUid
         receiverRoom = senderUid + receiverUid
 
+
+
+        // logic for adding data in RecyclerView
+        messageRecyclerViewLogic()
+
         // adding the message to database
         sentButton.setOnClickListener {
 
-            val message = messageBox.text.toString()
-            val messageObject = Message(message,senderUid)
-            mDbRef.child(KeyClass.KEY_CHATS).child(senderRoom!!).child(KeyClass.KEY_MESSAGES).push()
-                .setValue(messageObject).addOnSuccessListener {
-                    // for update receiver Room UI
-                    mDbRef.child(KeyClass.KEY_CHATS).child(receiverRoom!!).child(KeyClass.KEY_MESSAGES).push()
-                        .setValue(messageObject)
-                }
-            messageBox.setText("")
+            if (!TextUtils.isEmpty(messageBox.text.toString())){
+                val message = messageBox.text.toString()
+                val messageObject = Message(message,senderUid)
+                mDbRef.child(KeyClass.KEY_CHATS).child(senderRoom!!).child(KeyClass.KEY_MESSAGES).push()
+                    .setValue(messageObject).addOnSuccessListener {
+                        // for update receiver Room UI
+                        mDbRef.child(KeyClass.KEY_CHATS).child(receiverRoom!!).child(KeyClass.KEY_MESSAGES).push()
+                            .setValue(messageObject)
+                    }
+                messageBox.setText("")
+            }
+
         }
     }
 
@@ -69,5 +78,24 @@ class ChatActivity : AppCompatActivity() {
         messageList = ArrayList()
         messageAdapter = MessageAdapter(this,messageList)
         mDbRef = FirebaseDatabase.getInstance().reference
+    }
+    private fun messageRecyclerViewLogic(){
+        messageRecyclerView.layoutManager = LinearLayoutManager(this)
+        messageRecyclerView.adapter = messageAdapter
+        mDbRef.child(KeyClass.KEY_CHATS).child(senderRoom!!).child(KeyClass.KEY_MESSAGES)
+            .addValueEventListener(object : ValueEventListener{
+                @SuppressLint("NotifyDataSetChanged")
+                override fun onDataChange(snapshot: DataSnapshot) {
+
+                    messageList.clear()
+                    for (postSnapshot in snapshot.children){
+                        val message = postSnapshot.getValue(Message::class.java)
+                        messageList.add(message!!)
+                    }
+                    messageAdapter.notifyDataSetChanged()
+                }
+                override fun onCancelled(error: DatabaseError) {}
+
+            })
     }
 }
