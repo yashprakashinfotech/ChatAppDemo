@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sessionManager: SessionManager
     private lateinit var sharedPrefs : SharedPreferences
 
+//    private lateinit var crash : Button
+
     // Database
     private lateinit var mAuth: FirebaseAuth
     private lateinit var mDbRef: DatabaseReference
@@ -69,12 +71,18 @@ class MainActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {}
 
         })
+
+//        crash.setOnClickListener {
+//            throw RuntimeException("Test Crash") // Force a crash
+//        }
+
     }
 
     private fun initView(){
         sessionManager = SessionManager(this)
         sharedPrefs= this.getSharedPreferences(sessionManager.prefFile,sessionManager.privateMode)
         userRecyclerView = findViewById(R.id.userRecyclerView)
+//        crash = findViewById(R.id.crash)
         userList = ArrayList()
         userAdapter = UserAdapter(this,userList)
         mAuth = FirebaseAuth.getInstance()

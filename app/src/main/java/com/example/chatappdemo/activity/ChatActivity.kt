@@ -49,16 +49,17 @@ class ChatActivity : AppCompatActivity() {
         senderRoom = receiverUid + senderUid
         receiverRoom = senderUid + receiverUid
 
-
-
         // logic for adding data in RecyclerView
         messageRecyclerViewLogic()
+
+        // latest position of message
+//        messageRecyclerView.scrollToPosition(30)
 
         // adding the message to database
         sentButton.setOnClickListener {
 
             if (!TextUtils.isEmpty(messageBox.text.toString()) && !Validation.isValidSpaceFormat(messageBox.text.toString())){
-                val message = messageBox.text.toString()
+                val message = messageBox.text.toString().trim()
                 val messageObject = Message(message,senderUid)
                 mDbRef.child(KeyClass.KEY_CHATS).child(senderRoom!!).child(KeyClass.KEY_MESSAGES).push()
                     .setValue(messageObject).addOnSuccessListener {
@@ -67,6 +68,7 @@ class ChatActivity : AppCompatActivity() {
                             .setValue(messageObject)
                     }
                 messageBox.setText("")
+                messageRecyclerView.scrollToPosition(messageList.size)
             }
 
         }
@@ -81,8 +83,12 @@ class ChatActivity : AppCompatActivity() {
         mDbRef = FirebaseDatabase.getInstance().reference
     }
     private fun messageRecyclerViewLogic(){
+
         messageRecyclerView.layoutManager = LinearLayoutManager(this)
+
         messageRecyclerView.adapter = messageAdapter
+//        messageRecyclerView.layoutManager.setStackFromEnd(true)
+
         mDbRef.child(KeyClass.KEY_CHATS).child(senderRoom!!).child(KeyClass.KEY_MESSAGES)
             .addValueEventListener(object : ValueEventListener{
                 @SuppressLint("NotifyDataSetChanged")
@@ -94,9 +100,11 @@ class ChatActivity : AppCompatActivity() {
                         messageList.add(message!!)
                     }
                     messageAdapter.notifyDataSetChanged()
+
                 }
                 override fun onCancelled(error: DatabaseError) {}
 
             })
+
     }
 }
