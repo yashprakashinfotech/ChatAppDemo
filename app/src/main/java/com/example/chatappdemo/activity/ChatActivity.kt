@@ -7,6 +7,7 @@ import android.text.TextUtils
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.size
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.chatappdemo.R
@@ -85,6 +86,12 @@ class ChatActivity : AppCompatActivity() {
     private fun messageRecyclerViewLogic(){
 
         messageRecyclerView.layoutManager = LinearLayoutManager(this)
+
+
+//        messageRecyclerView.smoothScrollToPosition(messageRecyclerView.size -1)
+//        messageAdapter.notifyDataSetChanged()
+        (messageRecyclerView.layoutManager as LinearLayoutManager).stackFromEnd = true
+//        (messageRecyclerView.layoutManager as LinearLayoutManager).scrollToPosition(messageList.size)
 
         messageRecyclerView.adapter = messageAdapter
 //        messageRecyclerView.layoutManager.setStackFromEnd(true)
